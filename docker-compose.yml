@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # Aplicação React + Vite servida com Nginx
@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "80:80"  # EasyPanel usa porta 80
+      - "80:80" # EasyPanel usa porta 80
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:80/", "||", "exit", "1"]
@@ -22,7 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:80"  # Desenvolvimento local
+      - "8080:80" # Desenvolvimento local
     restart: unless-stopped
     profiles:
       - development
