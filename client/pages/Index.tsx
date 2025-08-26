@@ -40,8 +40,8 @@ export default function Index() {
               Your Blank Canvas
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-              A clean, modern foundation for your next great idea. 
-              Built with the latest technologies and ready for production.
+              A clean, modern foundation for your next great idea. Built with
+              the latest technologies and ready for production.
             </p>
           </div>
 
@@ -65,7 +65,8 @@ export default function Index() {
               </div>
               <h3 className="text-xl font-semibold mb-3">Lightning Fast</h3>
               <p className="text-gray-600">
-                Built with Vite and optimized for speed. Hot reload and instant updates.
+                Built with Vite and optimized for speed. Hot reload and instant
+                updates.
               </p>
             </Card>
 
@@ -75,7 +76,8 @@ export default function Index() {
               </div>
               <h3 className="text-xl font-semibold mb-3">Modern Stack</h3>
               <p className="text-gray-600">
-                React 18, TypeScript, Tailwind CSS, and Express. Everything you need.
+                React 18, TypeScript, Tailwind CSS, and Express. Everything you
+                need.
               </p>
             </Card>
 
@@ -85,18 +87,26 @@ export default function Index() {
               </div>
               <h3 className="text-xl font-semibold mb-3">Deploy Ready</h3>
               <p className="text-gray-600">
-                Production-ready setup with Docker support and CI/CD integration.
+                Production-ready setup with Docker support and CI/CD
+                integration.
               </p>
             </Card>
           </div>
 
           {/* CTA Section */}
           <Card className="p-12 border-0 shadow-xl bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-            <h2 className="text-3xl font-bold mb-4">Ready to create something amazing?</h2>
+            <h2 className="text-3xl font-bold mb-4">
+              Ready to create something amazing?
+            </h2>
             <p className="text-gray-300 mb-8 text-lg">
-              This blank canvas is your starting point. Clean, modern, and ready for your vision.
+              This blank canvas is your starting point. Clean, modern, and ready
+              for your vision.
             </p>
-            <Button size="lg" variant="secondary" className="text-base px-8 py-6">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="text-base px-8 py-6"
+            >
               Get Started Now
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
