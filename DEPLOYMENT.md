@@ -175,7 +175,7 @@ docker-compose logs app
 docker-compose exec app sh
 
 # Test health endpoint
-curl http://localhost:3000/api/ping
+curl http://localhost:8000/api/ping
 ```
 
 ## Security Considerations
