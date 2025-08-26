@@ -42,7 +42,7 @@ docker build -t blankcanvas:latest .
 # Run the container
 docker run -d \
   --name blankcanvas-app \
-  -p 3000:3000 \
+  -p 8000:8000 \
   --restart unless-stopped \
   blankcanvas:latest
 ```
