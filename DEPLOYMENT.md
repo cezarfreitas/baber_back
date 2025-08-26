@@ -5,6 +5,7 @@ This guide covers deploying your BlankCanvas application using Docker.
 ## Quick Start
 
 ### Development
+
 ```bash
 # Start development server
 pnpm dev
@@ -13,6 +14,7 @@ pnpm dev
 ### Production with Docker
 
 #### Basic Deployment
+
 ```bash
 # Build and run with Docker Compose
 docker-compose up -d
@@ -23,6 +25,7 @@ docker run -p 3000:3000 blankcanvas
 ```
 
 #### Production with Nginx (Recommended)
+
 ```bash
 # Use the production profile for nginx reverse proxy
 docker-compose --profile production up -d
@@ -31,6 +34,7 @@ docker-compose --profile production up -d
 ## Deployment Options
 
 ### 1. Simple Docker Deployment
+
 ```bash
 # Build the image
 docker build -t blankcanvas:latest .
@@ -44,6 +48,7 @@ docker run -d \
 ```
 
 ### 2. Docker Compose (Recommended)
+
 ```bash
 # Start all services
 docker-compose up -d
@@ -56,6 +61,7 @@ docker-compose down
 ```
 
 ### 3. Production with Load Balancer
+
 ```bash
 # Start with nginx reverse proxy
 docker-compose --profile production up -d
@@ -125,6 +131,7 @@ docker stats
 ## Deployment to Cloud Platforms
 
 ### AWS ECS/Fargate
+
 ```bash
 # Tag and push to ECR
 docker tag blankcanvas:latest your-account.dkr.ecr.region.amazonaws.com/blankcanvas:latest
@@ -132,6 +139,7 @@ docker push your-account.dkr.ecr.region.amazonaws.com/blankcanvas:latest
 ```
 
 ### Google Cloud Run
+
 ```bash
 # Build and deploy
 gcloud builds submit --tag gcr.io/your-project/blankcanvas
@@ -139,6 +147,7 @@ gcloud run deploy --image gcr.io/your-project/blankcanvas --platform managed
 ```
 
 ### Azure Container Instances
+
 ```bash
 # Deploy to Azure
 az container create \
@@ -157,6 +166,7 @@ az container create \
 3. **Health check failures**: Verify `/api/ping` endpoint is accessible
 
 ### Debug Commands
+
 ```bash
 # Check container logs
 docker-compose logs app
