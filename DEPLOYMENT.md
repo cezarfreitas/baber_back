@@ -78,7 +78,7 @@ Create a `.env` file for production:
 
 ```env
 NODE_ENV=production
-PORT=3000
+PORT=8000
 ```
 
 ## Health Monitoring
