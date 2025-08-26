@@ -1,58 +1,38 @@
-# Build stage
-FROM node:18-alpine AS builder
+# 🚀 Estrutura de Dockerfile para React + Vite
+# Etapa 1 - Build da aplicação
+FROM node:20-alpine AS builder
 
-# Set working directory
+# Definir diretório de trabalho
 WORKDIR /app
 
-# Copy package files
-COPY package.json pnpm-lock.yaml ./
+# Copiar arquivos de dependências (suporta tanto npm quanto pnpm)
+COPY package*.json ./
+COPY pnpm-lock.yaml* ./
 
-# Install pnpm and dependencies
+# Instalar pnpm e dependências
 RUN npm install -g pnpm
 RUN pnpm install --frozen-lockfile
 
-# Copy source code
+# Copiar todo o código para dentro do container
 COPY . .
 
-# Build the application
-RUN pnpm build
+# Gerar a build de produção do Vite (apenas frontend)
+RUN pnpm run build:client
 
-# Production stage
-FROM node:18-alpine AS production
+# Etapa 2 - Servir com Nginx
+FROM nginx:alpine
 
-# Set working directory
-WORKDIR /app
+# Remover configuração padrão do Nginx
+RUN rm -rf /usr/share/nginx/html/*
 
-# Copy package files
-COPY package.json pnpm-lock.yaml ./
+# Copiar build gerada do Vite para o diretório do Nginx
+COPY --from=builder /app/dist/spa /usr/share/nginx/html
 
-# Install pnpm and production dependencies only
-RUN npm install -g pnpm
-RUN pnpm install --frozen-lockfile --prod
+# Copiar configuração customizada do Nginx para SPA
+COPY nginx-spa.conf /etc/nginx/conf.d/default.conf
 
-# Copy built application from builder stage
-COPY --from=builder /app/dist ./dist
+# Expor porta 80 (EasyPanel)
+EXPOSE 80
 
-# Create non-root user for security
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
-
-# Change ownership of app directory
-RUN chown -R nextjs:nodejs /app
-
-# Switch to non-root user
-USER nextjs
-
-# Expose port
-EXPOSE 8000
-
-# Set environment variables
-ENV NODE_ENV=production
-ENV PORT=8000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:8000/api/ping', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"
-
-# Start the application
-CMD ["pnpm", "start"]
+# Comando padrão do Nginx
+CMD ["nginx", "-g", "daemon off;"]
